@@ -21,10 +21,12 @@ export default app => {
     status: {
       type: Number,
       required: false,
+      default: 0,
     },
     pageview: {
       type: Number,
       required: false,
+      default: 0,
     },
   }, {
     timestamps: {
@@ -34,5 +36,5 @@ export default app => {
   },
   );
 
-  return mongoose.model('Article', ArticleSchema, 'zl-article');
+  return mongoose.model('FindArticle', ArticleSchema, 'zl-article');
 };

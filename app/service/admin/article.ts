@@ -6,32 +6,41 @@ export default class ArticleService extends Service {
 
   // 新增
   async add(params) {
-    console.log('ArticleService -> add -> params', params);
     const {
       ctx,
     } = this;
-    console.log('ctx--------------------------', ctx.model);
     const result = await ctx.model.Article.create(params);
+    console.log('ArticleService -> add -> result', result);
     return result;
   }
 
-  // 查找
-  async find(params) {
+  // 查找文章
+  async find() {
     const {
       ctx,
     } = this;
-    const result = await ctx.model.Article.find(params);
+    const result = await ctx.model.FindArticle.find();
     return result;
   }
 
   // 编辑
-  async edit(e, d) {
+  async update(e, d) {
     const {
       ctx,
     } = this;
-    const result = await ctx.model.Article.updateOne(e, d);
-    return result;
+    const result = await ctx.model.Article.update(e, d);
+    console.log('ArticleService -> update -> result', result);
+    if (result.ok === 1) {
+      const data = {
+        status: '1',
+        success: 'true',
+        data: {},
+      };
+      return data;
+    }
+
   }
+
 
   // 删除
   async delOne(params) {

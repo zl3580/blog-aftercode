@@ -2,14 +2,14 @@
 // Do not modify this file!!!!!!!!!
 
 import 'egg';
-import ExportHome from '../../../app/model/test';
-import ExportAdminArticle from '../../../app/model/article';
+import ExportAdminArticle from '../../../app/model/findArticle';
+import ExportArticle from '../../../app/model/article';
+import ExportTest from '../../../app/model/test';
 
 declare module 'egg' {
   interface IModel {
-    Home: ReturnType<typeof ExportHome>;
-    Admin: {
-      Article: ReturnType<typeof ExportAdminArticle>;
-    }
+    AdminArticle: ReturnType<typeof ExportAdminArticle>;
+    Article: ReturnType<typeof ExportArticle>;
+    Test: ReturnType<typeof ExportTest>;
   }
 }

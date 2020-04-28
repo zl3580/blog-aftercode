@@ -10,32 +10,36 @@ export default class Article extends Controller {
     const result = await ctx.service.admin.article.add(ctx.request.body);
     console.log('Article -> add -> result', result);
     ctx.body = {
+      status: '1',
       success: 'true',
       data: {},
     };
     ctx.status = 200;
   }
 
-
-  public async find(params) {
+  // 查找所有
+  public async find() {
     const { ctx } = this;
-    const result = await ctx.service.article.find(params);
+    const result = await ctx.service.admin.article.find();
     ctx.body = {
+      status: '1',
       success: 'true',
       data: result,
     };
     ctx.status = 200;
   }
 
-  public async edit() {
+  // 编辑
+  public async update() {
     const { ctx } = this;
-    const result = await ctx.service.article.edit(ctx.request.body, ctx.request.body);
+    const { _id, status } = ctx.request.body;
+    const result = await ctx.service.admin.article.update({ _id }, { status });
     ctx.body = result;
   }
 
   public async delOne() {
     const { ctx } = this;
-    const result = await ctx.service.article.delOne(ctx.request.body);
+    const result = await ctx.service.admin.article.delOne(ctx.request.body);
     ctx.body = result;
     ctx.status = 200;
   }

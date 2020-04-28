@@ -20,7 +20,9 @@ export default (appInfo: EggAppInfo) => {
   config.mongoose = {
     client: {
       url: 'mongodb://lx544690189:lx82213175@47.99.159.40:27017/blog',
-      options: {},
+      options: {
+        useUnifiedTopology: true,
+      },
     },
   };
   // token
