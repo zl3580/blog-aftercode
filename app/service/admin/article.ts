@@ -9,20 +9,45 @@ export default class ArticleService extends Service {
     const {
       ctx,
     } = this;
-    const result = await ctx.model.Article.create(params);
-    console.log('ArticleService -> add -> result', result);
-    return result;
+    if (!params.title) {
+      return {
+        status: '0',
+        success: 'true',
+        data: { message: '标题不能为空！' },
+      };
+    }
+    if (!params.content) {
+      return {
+        status: '0',
+        success: 'true',
+        data: { message: '内容不能为空！' },
+      };
+    }
+    await ctx.model.Article.create(params);
+    return {
+      status: '1',
+      success: 'true',
+      data: { },
+    };
   }
 
-  // 查找文章
-  async find() {
+  // 文章分页
+  async find({ pageSize, pageNum }) {
     const {
       ctx,
     } = this;
-    const result = await ctx.model.FindArticle.find();
+    const result = await ctx.model.FindArticle.find().skip(pageSize * (pageNum - 1)).limit(parseInt(pageSize))
+      .sort({ updatedAt: -1 });
     return result;
   }
-
+  // id获取详情
+  async details({ _id }) {
+    const {
+      ctx,
+    } = this;
+    const result = await ctx.model.FindArticle.find({ _id });
+    return result[0];
+  }
   // 编辑
   async update(e, d) {
     const {
@@ -51,8 +76,9 @@ export default class ArticleService extends Service {
     let res = {};
     if (result.deletedCount === 1) {
       res = {
-        state: '1',
-        msg: 'success',
+        status: '1',
+        success: 'true',
+        data: {},
       };
     }
     return res;

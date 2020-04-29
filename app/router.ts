@@ -10,6 +10,8 @@ export default (app: Application) => {
   // 文章
   router.post('/admin/article/add', controller.admin.article.add);
   router.post('/admin/article/find', controller.admin.article.find);
+  router.post('/admin/article/details', controller.admin.article.details);
   router.post('/admin/article/update', controller.admin.article.update);
+  router.post('/admin/article/delete', controller.admin.article.delete);
 };
 

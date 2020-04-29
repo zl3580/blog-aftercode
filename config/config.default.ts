@@ -12,7 +12,10 @@ export default (appInfo: EggAppInfo) => {
       '.tpl': 'nunjucks',
     },
   };
-
+  config.onerror = {
+    // 线上页面发生异常时，重定向到这个页面上
+    errorPageUrl: '/50x.html',
+  };
   // add your egg config in here
   config.middleware = [];
   // mongodb

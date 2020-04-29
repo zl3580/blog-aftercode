@@ -6,27 +6,32 @@ export default class Article extends Controller {
 // 新增
   public async add() {
     const { ctx } = this;
-    console.log('------------ctx---------------', ctx);
     const result = await ctx.service.admin.article.add(ctx.request.body);
-    console.log('Article -> add -> result', result);
-    ctx.body = {
-      status: '1',
-      success: 'true',
-      data: {},
-    };
+    ctx.body = result;
     ctx.status = 200;
   }
 
-  // 查找所有
+  // 分页
   public async find() {
     const { ctx } = this;
-    const result = await ctx.service.admin.article.find();
+
+    const result = await ctx.service.admin.article.find(ctx.request.body);
     ctx.body = {
       status: '1',
       success: 'true',
       data: result,
     };
-    ctx.status = 200;
+  }
+  // 详情
+  public async details() {
+    const { ctx } = this;
+    console.log('Article -> details ----------------> ctx', ctx.request.body);
+    const result = await ctx.service.admin.article.details(ctx.request.body);
+    ctx.body = {
+      status: '1',
+      success: 'true',
+      data: result,
+    };
   }
 
   // 编辑
@@ -36,12 +41,11 @@ export default class Article extends Controller {
     const result = await ctx.service.admin.article.update({ _id }, { status });
     ctx.body = result;
   }
-
-  public async delOne() {
+  // 删除
+  public async delete() {
     const { ctx } = this;
     const result = await ctx.service.admin.article.delOne(ctx.request.body);
     ctx.body = result;
-    ctx.status = 200;
   }
 }
 
