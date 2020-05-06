@@ -36,9 +36,10 @@ export default class ArticleService extends Service {
     const {
       ctx,
     } = this;
+    const count = await (await ctx.model.FindArticle.find()).length;
     const result = await ctx.model.FindArticle.find().skip(pageSize * (pageNum - 1)).limit(parseInt(pageSize))
       .sort({ updatedAt: -1 });
-    return result;
+    return { list: result, count };
   }
   // id获取详情
   async details({ _id }) {
