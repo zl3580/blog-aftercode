@@ -36,8 +36,8 @@ export default class ArticleService extends Service {
     const {
       ctx,
     } = this;
-    const count = await (await ctx.model.FindArticle.find()).length;
-    const result = await ctx.model.FindArticle.find().skip(pageSize * (pageNum - 1)).limit(parseInt(pageSize))
+    const count = await (await ctx.model.Article.find()).length;
+    const result = await ctx.model.Article.find().skip(pageSize * (pageNum - 1)).limit(parseInt(pageSize))
       .sort({ updatedAt: -1 });
     return { list: result, count };
   }
@@ -46,11 +46,27 @@ export default class ArticleService extends Service {
     const {
       ctx,
     } = this;
-    const result = await ctx.model.FindArticle.find({ _id });
+    const result = await ctx.model.Article.find({ _id });
     return result[0];
   }
   // 编辑
   async update(e, d) {
+    const {
+      ctx,
+    } = this;
+    const result = await ctx.model.Article.update(e, d);
+    console.log('ArticleService -> update -> result', result);
+    if (result.ok === 1) {
+      const data = {
+        status: '1',
+        success: 'true',
+        data: {},
+      };
+      return data;
+    }
+  }
+  // 改变状态
+  async status(e, d) {
     const {
       ctx,
     } = this;

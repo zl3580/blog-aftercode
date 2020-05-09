@@ -13,6 +13,7 @@ export default class Photo extends Controller {
     while ((part = await parts()) != null) {
       if (part.length) {
         // 这是 busboy 的字段
+        console.log('------------------', part);
         console.log('field:--------------- ' + part[0]);
         console.log('value: ------------------' + part[1]);
         console.log('valueTruncated:---------------- ' + part[2]);

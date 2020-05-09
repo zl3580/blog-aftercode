@@ -33,12 +33,18 @@ export default class Article extends Controller {
       data: result,
     };
   }
-
   // 编辑
   public async update() {
     const { ctx } = this;
+    const { _id, title, content } = ctx.request.body;
+    const result = await ctx.service.admin.article.update({ _id }, { title, content });
+    ctx.body = result;
+  }
+  // 改变状态
+  public async status() {
+    const { ctx } = this;
     const { _id, status } = ctx.request.body;
-    const result = await ctx.service.admin.article.update({ _id }, { status });
+    const result = await ctx.service.admin.article.status({ _id }, { status });
     ctx.body = result;
   }
   // 删除

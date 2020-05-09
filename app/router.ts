@@ -12,6 +12,7 @@ export default (app: Application) => {
   router.post('/admin/article/find', controller.admin.article.find);
   router.post('/admin/article/details', controller.admin.article.details);
   router.post('/admin/article/update', controller.admin.article.update);
+  router.post('/admin/article/status', controller.admin.article.status);
   router.post('/admin/article/delete', controller.admin.article.delete);
   // 图片
   router.post('/admin/photo/upload', controller.admin.photo.upload);
