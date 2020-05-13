@@ -16,5 +16,7 @@ export default (app: Application) => {
   router.post('/admin/article/delete', controller.admin.article.delete);
   // 图片
   router.post('/admin/photo/upload', controller.admin.photo.upload);
+  router.post('/admin/photo/add', controller.admin.photo.add);
+  router.post('/admin/photo/find', controller.admin.photo.find);
 };
 

@@ -14,7 +14,6 @@ export default class Article extends Controller {
   // 分页
   public async find() {
     const { ctx } = this;
-
     const result = await ctx.service.admin.article.find(ctx.request.body);
     ctx.body = {
       status: '1',

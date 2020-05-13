@@ -42,6 +42,12 @@ export default (appInfo: EggAppInfo) => {
     origin: '*',
     allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH',
   };
+  // 上传服务器路径
+  config.uploadDir = 'app/public/photo/upload';
+  // 上传新增后缀名
+  config.multipart = {
+    fileExtensions: [ '.jfif' ], // 增加对 apk 扩展名的文件支持
+  };
   // add your special config in here
   const bizConfig = {
     // sourceUrl: `https://github.com/eggjs/examples/tree/master/${appInfo.name}`,

@@ -4,24 +4,27 @@ export default app => {
   const mongoose = app.mongoose;
   const Schema = mongoose.Schema;
   const ArticleSchema = new Schema({
-    title: {
+    name: {
       type: String,
       required: true,
     },
-    content: {
+    url: {
       type: String,
       required: true,
     },
-    img: {
+    introduce: {
       type: String,
-      required: false,
+      required: true,
+    },
+    phototime: {
+      type: String,
+      required: true,
+    },
+    address: {
+      type: String,
+      required: true,
     },
     status: {
-      type: Number,
-      required: false,
-      default: 0,
-    },
-    pageview: {
       type: Number,
       required: false,
       default: 0,
@@ -34,5 +37,5 @@ export default app => {
   },
   );
 
-  return mongoose.model('FindArticle', ArticleSchema, 'zl-article');
+  return mongoose.model('Photo', ArticleSchema, 'zl-photo');
 };

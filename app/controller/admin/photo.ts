@@ -2,47 +2,72 @@
 
 // 解析用户的输入，处理后返回相应的结果
 import sendToWormhole = require('stream-wormhole');
+import fs = require('mz/fs');
+import pump = require('pump');
 import { Controller } from 'egg';
 export default class Photo extends Controller {
 // 上传
   public async upload() {
     const { ctx } = this;
+    console.log('ctx---------------------', ctx.request.body);
     const parts = ctx.multipart();
+    let files = {};
+    const data: any = [];
     let part;
-    // parts() 返回 promise 对象
     while ((part = await parts()) != null) {
       if (part.length) {
         // 这是 busboy 的字段
-        console.log('------------------', part);
-        console.log('field:--------------- ' + part[0]);
-        console.log('value: ------------------' + part[1]);
-        console.log('valueTruncated:---------------- ' + part[2]);
-        console.log('fieldnameTruncated:------------- ' + part[3]);
       } else {
         if (!part.filename) {
-          // 这时是用户没有选择文件就点击了上传(part 是 file stream，但是 part.filename 为空)
-          // 需要做出处理，例如给出错误提示消息
+          ctx.throw('请选择上传的图片!');
           return;
         }
         // part 是上传的文件流
-        console.log('field: -----------' + part.fieldname);
-        console.log('filename:---------- ' + part.filename);
-        console.log('encoding: -----------' + part.encoding);
-        console.log('mime: -------------' + part.mime);
+        const fieldname = part.filename;
+        // 上传图片的目录
+        const dir = await ctx.service.admin.photo.getUploadFile(fieldname);
+        const target = dir.uploadDir;
+        const writeStream = fs.createWriteStream(target);
+
+
         // 文件处理，上传到云存储等等
-        let result;
         try {
-          result = await ctx.oss.put('egg-multipart-test/' + part.filename, part);
+          await pump(part, writeStream);
         } catch (err) {
           // 必须将上传的文件流消费掉，要不然浏览器响应会卡死
           await sendToWormhole(part);
           throw err;
         }
-        console.log(result);
+        files = Object.assign(files, {
+          [fieldname]: dir.saveDir,
+        });
+        data.push({ name: fieldname, url: dir.saveDir });
+        ctx.body = {
+          status: '1',
+          success: 'true',
+          data,
+        };
+        // ctx.set({ 'Content-Type': ' multipart / form - data' });
       }
     }
-    console.log('and we are done parsing the form!');
   }
 
+  // 新增
+  public async add() {
+    const { ctx } = this;
+    const result = await ctx.service.admin.photo.add(ctx.request.body);
+    ctx.body = result;
+    ctx.status = 200;
+  }
+  // 分页
+  public async find() {
+    const { ctx } = this;
+    const result = await ctx.service.admin.photo.find(ctx.request.body);
+    ctx.body = {
+      status: '1',
+      success: 'true',
+      data: result,
+    };
+  }
 }
 
