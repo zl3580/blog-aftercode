@@ -29,7 +29,7 @@ export default class PhotoService extends Service {
     const {
       ctx,
     } = this;
-    await ctx.model.Article.create(params);
+    await ctx.model.Photo.create(params);
     return {
       status: '1',
       success: 'true',

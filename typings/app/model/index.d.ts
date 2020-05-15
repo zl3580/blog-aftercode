@@ -3,13 +3,13 @@
 
 import 'egg';
 import ExportArticle from '../../../app/model/article';
-import ExportFindArticle from '../../../app/model/photo';
+import ExportPhoto from '../../../app/model/photo';
 import ExportTest from '../../../app/model/test';
 
 declare module 'egg' {
   interface IModel {
     Article: ReturnType<typeof ExportArticle>;
-    FindArticle: ReturnType<typeof ExportFindArticle>;
+    Photo: ReturnType<typeof ExportPhoto>;
     Test: ReturnType<typeof ExportTest>;
   }
 }

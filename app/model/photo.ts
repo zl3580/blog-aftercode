@@ -4,19 +4,15 @@ export default app => {
   const mongoose = app.mongoose;
   const Schema = mongoose.Schema;
   const ArticleSchema = new Schema({
-    name: {
-      type: String,
-      required: true,
-    },
-    url: {
-      type: String,
+    imgs: {
+      type: Array,
       required: true,
     },
     introduce: {
       type: String,
       required: true,
     },
-    phototime: {
+    time: {
       type: String,
       required: true,
     },

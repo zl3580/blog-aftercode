@@ -9,7 +9,6 @@ export default class Photo extends Controller {
 // 上传
   public async upload() {
     const { ctx } = this;
-    console.log('ctx---------------------', ctx.request.body);
     const parts = ctx.multipart();
     let files = {};
     const data: any = [];
@@ -55,6 +54,7 @@ export default class Photo extends Controller {
   // 新增
   public async add() {
     const { ctx } = this;
+    console.log('Photo -> add -> ctx---------------------------', ctx);
     const result = await ctx.service.admin.photo.add(ctx.request.body);
     ctx.body = result;
     ctx.status = 200;
