@@ -38,7 +38,7 @@ export default class ArticleService extends Service {
     } = this;
     const count = await (await ctx.model.Article.find()).length;
     const result = await ctx.model.Article.find().skip(pageSize * (pageNum - 1)).limit(parseInt(pageSize))
-      .sort({ updatedAt: -1 });
+      .sort({ _id: -1 });
     return { list: result, count };
   }
   // id获取详情
@@ -82,8 +82,6 @@ export default class ArticleService extends Service {
     }
 
   }
-
-
   // 删除
   async delOne(params) {
     const {

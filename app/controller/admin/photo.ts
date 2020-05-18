@@ -27,8 +27,6 @@ export default class Photo extends Controller {
         const dir = await ctx.service.admin.photo.getUploadFile(fieldname);
         const target = dir.uploadDir;
         const writeStream = fs.createWriteStream(target);
-
-
         // 文件处理，上传到云存储等等
         try {
           await pump(part, writeStream);
@@ -68,6 +66,36 @@ export default class Photo extends Controller {
       success: 'true',
       data: result,
     };
+  }
+  // 详情
+  public async details() {
+    const { ctx } = this;
+    const result = await ctx.service.admin.photo.details(ctx.request.body);
+    ctx.body = {
+      status: '1',
+      success: 'true',
+      data: result,
+    };
+  }
+  // 编辑
+  public async update() {
+    const { ctx } = this;
+    const { _id, address, time, introduce, imgs } = ctx.request.body;
+    const result = await ctx.service.admin.photo.update({ _id }, { address, time, introduce, imgs });
+    ctx.body = result;
+  }
+  // 改变状态
+  public async status() {
+    const { ctx } = this;
+    const { _id, status } = ctx.request.body;
+    const result = await ctx.service.admin.photo.status({ _id }, { status });
+    ctx.body = result;
+  }
+  // 删除
+  public async delete() {
+    const { ctx } = this;
+    const result = await ctx.service.admin.photo.delOne(ctx.request.body);
+    ctx.body = result;
   }
 }
 

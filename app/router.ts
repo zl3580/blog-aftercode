@@ -18,5 +18,9 @@ export default (app: Application) => {
   router.post('/admin/photo/upload', controller.admin.photo.upload);
   router.post('/admin/photo/add', controller.admin.photo.add);
   router.post('/admin/photo/find', controller.admin.photo.find);
+  router.post('/admin/photo/details', controller.admin.photo.details);
+  router.post('/admin/photo/update', controller.admin.photo.update);
+  router.post('/admin/photo/status', controller.admin.photo.status);
+  router.post('/admin/photo/delete', controller.admin.photo.delete);
 };
 
