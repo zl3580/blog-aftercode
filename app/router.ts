@@ -35,6 +35,7 @@ export default (app: Application) => {
   // home 首页
   router.post('/article/get', controller.front.home.getArticle);
   router.post('/photo/get', controller.front.home.getPhoto);
-
+  // article  页面
+  router.post('/article/find', controller.admin.article.find);
 };
 

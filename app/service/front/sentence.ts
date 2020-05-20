@@ -4,7 +4,7 @@
 import { Service } from 'egg';
 export default class ArticleService extends Service {
 
-  // id获取详情
+  // 随机返回一条
   async get() {
     const {
       ctx,

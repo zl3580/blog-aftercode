@@ -17,7 +17,14 @@ export default class ArticleService extends Service {
     const {
       ctx,
     } = this;
-    const result = await ctx.model.Article.aggregate([{ $sample: { size: 5 } }]);
-    return result;
+    const result = await ctx.model.Photo.aggregate([{ $sample: { size: 5 } }]);
+    console.log('ArticleService -> getPhoto -> result', result);
+    const data = result.map(item => {
+      return {
+        img: item.imgs[0],
+        _id: item._id,
+      };
+    });
+    return data;
   }
 }

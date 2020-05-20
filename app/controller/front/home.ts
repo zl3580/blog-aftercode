@@ -12,7 +12,7 @@ export default class Home extends Controller {
       data: result,
     };
   }
-  // 随机获取5条文章
+  // 随机获取5条图片
   public async getPhoto() {
     const { ctx } = this;
     const result = await ctx.service.front.home.getPhoto();

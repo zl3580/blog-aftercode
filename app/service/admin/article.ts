@@ -12,21 +12,18 @@ export default class ArticleService extends Service {
     if (!params.title) {
       return {
         status: '0',
-        success: 'true',
         data: { message: '标题不能为空！' },
       };
     }
     if (!params.content) {
       return {
         status: '0',
-        success: 'true',
         data: { message: '内容不能为空！' },
       };
     }
     await ctx.model.Article.create(params);
     return {
       status: '1',
-      success: 'true',
       data: { },
     };
   }
@@ -36,7 +33,7 @@ export default class ArticleService extends Service {
     const {
       ctx,
     } = this;
-    const count = await (await ctx.model.Article.find()).length;
+    const count = await ctx.model.Article.count({});
     const result = await ctx.model.Article.find().skip(pageSize * (pageNum - 1)).limit(parseInt(pageSize))
       .sort({ _id: -1 });
     return { list: result, count };
@@ -59,7 +56,6 @@ export default class ArticleService extends Service {
     if (result.ok === 1) {
       const data = {
         status: '1',
-        success: 'true',
         data: {},
       };
       return data;
@@ -75,7 +71,6 @@ export default class ArticleService extends Service {
     if (result.ok === 1) {
       const data = {
         status: '1',
-        success: 'true',
         data: {},
       };
       return data;
@@ -92,7 +87,6 @@ export default class ArticleService extends Service {
     if (result.deletedCount === 1) {
       res = {
         status: '1',
-        success: 'true',
         data: {},
       };
     }
