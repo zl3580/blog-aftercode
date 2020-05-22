@@ -63,7 +63,6 @@ export default class Photo extends Controller {
     const result = await ctx.service.admin.photo.find(ctx.request.body);
     ctx.body = {
       status: '1',
-      success: 'true',
       data: result,
     };
   }
@@ -73,7 +72,6 @@ export default class Photo extends Controller {
     const result = await ctx.service.admin.photo.details(ctx.request.body);
     ctx.body = {
       status: '1',
-      success: 'true',
       data: result,
     };
   }

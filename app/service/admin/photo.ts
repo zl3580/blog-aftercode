@@ -32,7 +32,6 @@ export default class PhotoService extends Service {
     await ctx.model.Photo.create(params);
     return {
       status: '1',
-      success: 'true',
       data: { },
     };
   }
@@ -63,7 +62,6 @@ export default class PhotoService extends Service {
     if (result.ok === 1) {
       const data = {
         status: '1',
-        success: 'true',
         data: {},
       };
       return data;
@@ -78,7 +76,6 @@ export default class PhotoService extends Service {
     if (result.ok === 1) {
       const data = {
         status: '1',
-        success: 'true',
         data: {},
       };
       return data;
@@ -94,7 +91,6 @@ export default class PhotoService extends Service {
     if (result.deletedCount === 1) {
       res = {
         status: '1',
-        success: 'true',
         data: {},
       };
     }

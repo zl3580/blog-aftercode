@@ -11,6 +11,7 @@ import ExportAdminArticle from '../../../app/service/admin/article';
 import ExportAdminPhoto from '../../../app/service/admin/photo';
 import ExportAdminSentence from '../../../app/service/admin/sentence';
 import ExportFrontHome from '../../../app/service/front/home';
+import ExportFrontMenubar from '../../../app/service/front/menubar';
 import ExportFrontSentence from '../../../app/service/front/sentence';
 
 declare module 'egg' {
@@ -23,6 +24,7 @@ declare module 'egg' {
     }
     front: {
       home: AutoInstanceType<typeof ExportFrontHome>;
+      menubar: AutoInstanceType<typeof ExportFrontMenubar>;
       sentence: AutoInstanceType<typeof ExportFrontSentence>;
     }
   }
