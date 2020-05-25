@@ -33,5 +33,5 @@ export default app => {
   },
   );
 
-  return mongoose.model('Photo', ArticleSchema, 'zl-photo');
+  return mongoose.model('Photo', ArticleSchema, 'photo');
 };

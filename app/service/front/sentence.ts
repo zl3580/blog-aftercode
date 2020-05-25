@@ -10,6 +10,18 @@ export default class ArticleService extends Service {
       ctx,
     } = this;
     const result = await ctx.model.Sentence.aggregate([{ $sample: { size: 1 } }]);
-    return result[0];
+    console.log('ArticleService -----------------------> get -> result', result);
+    let data;
+    if (result.length === 0) {
+      data = {
+        content: '因未知而美好，而讨厌。',
+        author: '未知',
+        book: '未知',
+        bgImg: { name: '', url: '' },
+      };
+    } else {
+      data = result[0];
+    }
+    return data;
   }
 }

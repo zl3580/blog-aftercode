@@ -7,6 +7,7 @@ export default class Sentence extends Controller {
   public async get() {
     const { ctx } = this;
     const result = await ctx.service.front.sentence.get();
+    console.log('Sentence ------------------------------> get -> result', result);
     ctx.body = {
       status: '1',
       data: result,

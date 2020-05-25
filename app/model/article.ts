@@ -35,5 +35,5 @@ export default app => {
   },
   );
 
-  return mongoose.model('Article', ArticleSchema, 'zl-article');
+  return mongoose.model('Article', ArticleSchema, 'article');
 };

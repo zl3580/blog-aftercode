@@ -22,7 +22,7 @@ export default (appInfo: EggAppInfo) => {
   // 连接mongodb的配置
   config.mongoose = {
     client: {
-      url: 'mongodb://lx544690189:lx82213175@47.99.159.40:27017/blog',
+      url: 'mongodb://system:123456@47.99.159.40:27017/blog-zl?authSource=blog-lx',
       options: {
         useUnifiedTopology: true,
       },
@@ -40,7 +40,8 @@ export default (appInfo: EggAppInfo) => {
 
   config.cors = {
     origin: '*',
-    allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH',
+    credentials: true, // 允许跨域携带cookie
+    allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH,OPTIONS',
   };
   // 上传服务器路径
   config.uploadDir = 'app/public/photo/upload';

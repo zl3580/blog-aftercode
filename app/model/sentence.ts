@@ -8,14 +8,17 @@ export default app => {
     author: {
       type: String,
       required: true,
+      default: '',
     },
     book: {
       type: String,
       required: true,
+      default: '',
     },
     content: {
       type: String,
       required: false,
+      default: '',
     },
     status: {
       type: Number,
@@ -30,6 +33,7 @@ export default app => {
     bgImg: {
       type: Object,
       required: false,
+      default: '',
     },
   }, {
     timestamps: {
@@ -39,5 +43,5 @@ export default app => {
   },
   );
 
-  return mongoose.model('Sentence', ArticleSchema, 'zl-sentence');
+  return mongoose.model('Sentence', ArticleSchema, 'sentence');
 };
