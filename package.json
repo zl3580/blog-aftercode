@@ -27,6 +27,7 @@
     "egg-mongoose": "^3.2.0",
     "egg-scripts": "^2.6.0",
     "egg-view-nunjucks": "^2.2.0",
+    "github-webhook-handler": "^1.0.0",
     "pump": "^3.0.0",
     "silly-datetime": "^0.1.2"
   },
