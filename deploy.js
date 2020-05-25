@@ -1,6 +1,4 @@
-// import http from 'http';
-// import createHandler from 'github-webhook-handler';
-// import { spawn } from 'child_process';
+
 const http = require('http')
 const createHandler = require('github-webhook-handler')
 const spawn=require('child_process').spawn;
