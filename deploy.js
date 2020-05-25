@@ -1,6 +1,9 @@
-import http from 'http';
-import createHandler from 'github-webhook-handler';
-import { spawn } from 'child_process';
+// import http from 'http';
+// import createHandler from 'github-webhook-handler';
+// import { spawn } from 'child_process';
+const http = require('http')
+const createHandler = require('github-webhook-handler')
+const spawn=require('child_process').spawn;
 const handler = createHandler({ path: '/webhook', secret: 'blogAfter' });
 
 
@@ -18,6 +21,7 @@ http.createServer(function(req, res) {
     res.end('no such location');
   });
 }).listen(3000);
+console.log('kslfjl')
 
 handler.on('error', function(err) {
   console.error('Error:', err.message);
