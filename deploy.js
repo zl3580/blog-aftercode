@@ -7,26 +7,20 @@ const spawn = require('child_process').spawn;
 const handler = createHandler({ path: '/webhook', secret: 'blogAfter' });
 
 
-function runCommand(cmd, args, callback) {
-  console.log(11111111);
+function runCommand(cmd, args) {
   const child = spawn(cmd, args);
-  console.log(2222222);
-  let response = '';
-  child.stdout.on('data', function(buffer) { response += buffer.toString(); });
-  console.log(23333333);
-  child.stdout.on('end', function() { callback(response); });
-  console.log(44444444444444);
+  child.stdout.on('data', function(buffer) { console.log('标准输出：', buffer); });
+  child.stdout.on('end', function() { console.log('标准输出：'); });
 }
 
 http.createServer(function(req, res) {
-  res.end('hfkhkhjkh');
+  res.end('成功');
   handler(req, res, function(err) {
-    console.log('res---------', res);
-    console.log('req-----------', req);
     console.log('err------------', err);
     res.statusCode = 404;
     res.end('no such location');
   });
+
 }).listen(3000);
 console.log('kslfjl');
 
@@ -40,8 +34,7 @@ handler.on('push', function(event) {
     event.payload.ref);
   console.log('监听到push事件');
   console.log('process.env.PATH', process.env.PATH);
-  runCommand('sh', [ 'deploy.sh' ], function(txt) {
-    console.log('txt', txt);
-  });
+  runCommand('sh', [ 'deploy.sh' ]);
+
 });
 
