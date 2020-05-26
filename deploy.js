@@ -7,12 +7,6 @@ const exec = require('child_process').exec;
 const handler = createHandler({ path: '/webhook', secret: 'blogAfter' });
 
 
-function runCommand(cmd) {
-  const child = exec(cmd);
-  child.stdout.on('data', function(buffer) { console.log('标准输出：', buffer); });
-  child.stdout.on('end', function() { console.log('标准输出：end'); });
-}
-
 http.createServer(function(req, res) {
   res.end('成功');
   handler(req, res, function(err) {
@@ -33,7 +27,8 @@ handler.on('push', function(event) {
     event.payload.ref);
 
   console.log('process.env.PATH', process.env.PATH);
-  runCommand('sh deploy.sh');
-
+  exec('sh deploy.sh', function(err, sto) {
+    console.log('sto', sto);
+  });
 });
 

@@ -1,5 +1,4 @@
-#!/bin/sh
-
+#!/bin/bash
 cd 'C:\blog-zl-aftercode\blog-aftercode'
 echo "Hello World !"
 npm run stop
