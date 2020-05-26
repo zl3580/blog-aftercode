@@ -1,7 +1,9 @@
 
-const http = require('http')
-const createHandler = require('github-webhook-handler')
-const spawn=require('child_process').spawn;
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const http = require('http');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const createHandler = require('github-webhook-handler');
+const spawn = require('child_process').spawn;
 const handler = createHandler({ path: '/webhook', secret: 'blogAfter' });
 
 
@@ -14,14 +16,14 @@ function runCommand(cmd, args, callback) {
 
 http.createServer(function(req, res) {
   handler(req, res, function(err) {
-  console.log("res", res)
-  console.log("req", req)
+    console.log('res', res);
+    console.log('req', req);
     console.log('err', err);
     res.statusCode = 404;
     res.end('no such location');
   });
 }).listen(3000);
-console.log('kslfjl')
+console.log('kslfjl');
 
 handler.on('error', function(err) {
   console.error('Error:', err.message);
