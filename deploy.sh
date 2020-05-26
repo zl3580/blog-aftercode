@@ -1,4 +1,6 @@
 #!/bin/sh
+
+cd 'C:\blog-zl-aftercode\blog-aftercode'
 echo "Hello World !"
 npm run stop
 git pull
