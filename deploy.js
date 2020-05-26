@@ -25,15 +25,13 @@ handler.on('push', function(event) {
   console.log('Received a push event for %s to %s',
     event.payload.repository.name,
     event.payload.ref);
-
-  console.log('process.env.PATH', process.env.PATH);
   const syncFile = spawn('C:/Program Files/Git/git-bash.exe', [ './deploy.sh' ]);
   syncFile.stdout.on('data', data => {
-    console.log(data.toString());
+    console.log('stdout---------', data.toString());
   });
 
   syncFile.stderr.on('data', data => {
-    console.log(data.toString());
+    console.log('stderr------------', data.toString());
   });
 
   syncFile.on('exit', code => {

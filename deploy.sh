@@ -1,6 +1,6 @@
 #!/bin/bash
 cd 'C:\blog-zl-aftercode\blog-aftercode'
-echo "Hello World !"
+echo "开始了"
 npm run stop
 git pull
 npm run tsc
