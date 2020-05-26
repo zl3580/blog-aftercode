@@ -6,16 +6,15 @@ const createHandler = require('github-webhook-handler');
 const spawn = require('child_process').spawn;
 const handler = createHandler({ path: '/webhook', secret: 'blogAfter' });
 
-
+let response = '';
 function runCommand(cmd, args, callback) {
   const child = spawn(cmd, args);
-  let response = '';
   child.stdout.on('data', function(buffer) { response += buffer.toString(); });
   child.stdout.on('end', function() { callback(response); });
 }
 
 http.createServer(function(req, res) {
-  res.send('fhdskhgfkdh');
+  res.end({ response });
   handler(req, res, function(err) {
     console.log('res---------', res);
     console.log('req-----------', req);
