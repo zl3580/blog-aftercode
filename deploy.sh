@@ -1,2 +1,5 @@
 #!/bin/bash
-echo 'sh  成功了'
+npm run stop
+git pull
+npm run tsc
+npm run start

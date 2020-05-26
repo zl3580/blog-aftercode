@@ -32,7 +32,7 @@ handler.on('push', function(event) {
   console.log('Received a push event for %s to %s',
     event.payload.repository.name,
     event.payload.ref);
-  console.log('监听到push事件');
+
   console.log('process.env.PATH', process.env.PATH);
   runCommand('sh deploy.sh');
 
