@@ -3,7 +3,7 @@
 const http = require('http');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const createHandler = require('github-webhook-handler');
-const exec = require('child_process').exec;
+const spawn = require('child_process').spawn;
 const handler = createHandler({ path: '/webhook', secret: 'blogAfter' });
 
 
@@ -27,9 +27,18 @@ handler.on('push', function(event) {
     event.payload.ref);
 
   console.log('process.env.PATH', process.env.PATH);
-  exec('bash deploy.sh', function(err, sto) {
-    console.log('err', err);
-    console.log('sto', sto);
+  const syncFile = spawn('C:/Program Files/Git/git-bash.exe', [ './deploy.sh' ]);
+  syncFile.stdout.on('data', data => {
+    console.log(data.toString());
   });
+
+  syncFile.stderr.on('data', data => {
+    console.log(data.toString());
+  });
+
+  syncFile.on('exit', code => {
+    console.log(`子进程退出码：${code}`);
+  });
+
 });
 
