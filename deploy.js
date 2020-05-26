@@ -8,8 +8,9 @@ const handler = createHandler({ path: '/webhook', secret: 'blogAfter' });
 
 
 function runCommand(cmd, args, callback) {
-
+  console.log(11111111);
   const child = spawn(cmd, args);
+  console.log(2222222);
   let response = '';
   child.stdout.on('data', function(buffer) { response += buffer.toString(); });
   child.stdout.on('end', function() { callback(response); });
