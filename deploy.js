@@ -14,7 +14,7 @@ function runCommand(cmd, args, callback) {
 }
 
 http.createServer(function(req, res) {
-  res.end({ response });
+  res.end({ ...response });
   handler(req, res, function(err) {
     console.log('res---------', res);
     console.log('req-----------', req);
@@ -35,7 +35,7 @@ handler.on('push', function(event) {
     event.payload.ref);
   console.log('监听到push事件');
   runCommand('sh', [ 'deploy.sh' ], function(txt) {
-    console.log(txt);
+    console.log('txt', txt);
   });
 });
 
