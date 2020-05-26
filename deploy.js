@@ -8,7 +8,7 @@ const handler = createHandler({ path: '/webhook', secret: 'blogAfter' });
 
 
 http.createServer(function(req, res) {
-  // res.end('成功');
+   res.end('成功');
   handler(req, res, function(err) {
     console.log('err------------', err);
     res.statusCode = 404;
