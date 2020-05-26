@@ -1,4 +1,4 @@
-
+#!/bin/bash
 npm run stop
 git reset --hard origin/master
 git clean -f
