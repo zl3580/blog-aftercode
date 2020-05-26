@@ -8,7 +8,7 @@ const handler = createHandler({ path: '/webhook', secret: 'blogAfter' });
 
 
 http.createServer(function(req, res) {
-  res.end('成功');
+  // res.end('成功');
   handler(req, res, function(err) {
     console.log('err------------', err);
     res.statusCode = 404;
@@ -27,7 +27,7 @@ handler.on('push', function(event) {
     event.payload.ref);
 
   console.log('process.env.PATH', process.env.PATH);
-  exec('sh deploy.sh', function(err, sto) {
+  exec('bash deploy.sh', function(err, sto) {
     console.log('err', err);
     console.log('sto', sto);
   });
