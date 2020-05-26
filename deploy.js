@@ -3,7 +3,7 @@
 const http = require('http');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const createHandler = require('github-webhook-handler');
-const exec = require('child_process').exec;
+const exec = require('child_process').execFile;
 const handler = createHandler({ path: '/webhook', secret: 'blogAfter' });
 
 
@@ -27,9 +27,6 @@ handler.on('push', function(event) {
     event.payload.ref);
 
   console.log('process.env.PATH', process.env.PATH);
-  exec('sh deploy.sh', function(err, sto) {
-    console.log('err', err);
-    console.log('sto', sto);
-  });
+  exec('./deploy.sh');
 });
 
