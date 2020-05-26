@@ -3,12 +3,12 @@
 const http = require('http');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const createHandler = require('github-webhook-handler');
-const spawn = require('child_process').spawn;
+const exec = require('child_process').exec;
 const handler = createHandler({ path: '/webhook', secret: 'blogAfter' });
 
 
-function runCommand(cmd, args) {
-  const child = spawn(cmd, args);
+function runCommand(cmd) {
+  const child = exec(cmd);
   child.stdout.on('data', function(buffer) { console.log('标准输出：', buffer); });
   child.stdout.on('end', function() { console.log('标准输出：'); });
 }
@@ -34,7 +34,7 @@ handler.on('push', function(event) {
     event.payload.ref);
   console.log('监听到push事件');
   console.log('process.env.PATH', process.env.PATH);
-  runCommand('sh', [ 'deploy.sh' ]);
+  runCommand('sh deploy.sh');
 
 });
 
