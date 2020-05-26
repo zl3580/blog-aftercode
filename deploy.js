@@ -14,7 +14,7 @@ function runCommand(cmd, args, callback) {
 }
 
 http.createServer(function(req, res) {
-  res.end({ ...response });
+  res.end('hfkhkhjkh');
   handler(req, res, function(err) {
     console.log('res---------', res);
     console.log('req-----------', req);
