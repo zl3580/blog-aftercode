@@ -13,7 +13,9 @@ function runCommand(cmd, args, callback) {
   console.log(2222222);
   let response = '';
   child.stdout.on('data', function(buffer) { response += buffer.toString(); });
+  console.log(23333333);
   child.stdout.on('end', function() { callback(response); });
+  console.log(44444444444444);
 }
 
 http.createServer(function(req, res) {
