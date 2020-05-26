@@ -27,6 +27,12 @@ handler.on('push', function(event) {
     event.payload.ref);
 
   console.log('process.env.PATH', process.env.PATH);
-  exec('./deploy.sh');
+  exec('deploy.sh', {
+    encoding: 'utf8',
+    maxBuffer: 200 * 1024 * 1000, // 注意这个maxBuffer,作者在这里踩到过坑  因为项目更新 代码量越来越多  打包脚本输入的日志也越来越多 maxBuffer默认值已经不够了 这时需要你扩大它的值
+  }, function(err, stdout) {
+    console.log('err', err);
+    console.log('stdout', stdout);
+  });
 });
 
