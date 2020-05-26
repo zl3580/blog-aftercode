@@ -6,9 +6,11 @@ const createHandler = require('github-webhook-handler');
 const spawn = require('child_process').spawn;
 const handler = createHandler({ path: '/webhook', secret: 'blogAfter' });
 
-let response = '';
+
 function runCommand(cmd, args, callback) {
+
   const child = spawn(cmd, args);
+  let response = '';
   child.stdout.on('data', function(buffer) { response += buffer.toString(); });
   child.stdout.on('end', function() { callback(response); });
 }
@@ -34,6 +36,7 @@ handler.on('push', function(event) {
     event.payload.repository.name,
     event.payload.ref);
   console.log('监听到push事件');
+  console.log('process.env.PATH', process.env.PATH);
   runCommand('sh', [ 'deploy.sh' ], function(txt) {
     console.log('txt', txt);
   });
