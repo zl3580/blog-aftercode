@@ -10,7 +10,7 @@ const handler = createHandler({ path: '/webhook', secret: 'blogAfter' });
 function runCommand(cmd) {
   const child = exec(cmd);
   child.stdout.on('data', function(buffer) { console.log('标准输出：', buffer); });
-  child.stdout.on('end', function() { console.log('标准输出：'); });
+  child.stdout.on('end', function() { console.log('标准输出：end'); });
 }
 
 http.createServer(function(req, res) {
@@ -22,7 +22,6 @@ http.createServer(function(req, res) {
   });
 
 }).listen(3000);
-console.log('kslfjl');
 
 handler.on('error', function(err) {
   console.error('Error----------:', err.message);
