@@ -16,9 +16,9 @@ function runCommand(cmd, args, callback) {
 
 http.createServer(function(req, res) {
   handler(req, res, function(err) {
-    console.log('res', res);
-    console.log('req', req);
-    console.log('err', err);
+    console.log('res---------', res);
+    console.log('req-----------', req);
+    console.log('err------------', err);
     res.statusCode = 404;
     res.end('no such location');
   });
@@ -26,13 +26,14 @@ http.createServer(function(req, res) {
 console.log('kslfjl');
 
 handler.on('error', function(err) {
-  console.error('Error:', err.message);
+  console.error('Error----------:', err.message);
 });
 
 handler.on('push', function(event) {
   console.log('Received a push event for %s to %s',
     event.payload.repository.name,
     event.payload.ref);
+  console.log('监听到push事件');
   runCommand('sh', [ 'deploy.sh' ], function(txt) {
     console.log(txt);
   });
