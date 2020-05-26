@@ -27,7 +27,8 @@ handler.on('push', function(event) {
     event.payload.ref);
 
   console.log('process.env.PATH', process.env.PATH);
-  exec('sh deploy.sh', function(err, sto) {
+  exec('./deploy.sh', function(err, sto) {
+    console.log('err', err);
     console.log('sto', sto);
   });
 });
