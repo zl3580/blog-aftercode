@@ -35,8 +35,8 @@ export default class Sentence extends Controller {
   // 编辑
   public async update() {
     const { ctx } = this;
-    const { _id, title, content } = ctx.request.body;
-    const result = await ctx.service.admin.sentence.update({ _id }, { title, content });
+    const { _id, book, content, author, bgImg } = ctx.request.body;
+    const result = await ctx.service.admin.sentence.update({ _id }, { book, content, author, bgImg });
     ctx.body = result;
   }
   // 改变状态

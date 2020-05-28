@@ -38,9 +38,9 @@ export default (app: Application) => {
   // Menubar  搜索
   router.post('/menubar/search', controller.front.menubar.search);
   // article  页面
-  router.post('/article/find', controller.admin.article.find);
-  router.post('/article/details', controller.admin.article.details);
+  router.post('/article/find', controller.front.article.find);
+  router.post('/article/details', controller.front.article.details);
   // photo 页面
-  router.post('/photo/find', controller.admin.photo.find);
+  router.post('/photo/find', controller.front.photo.find);
 };
 

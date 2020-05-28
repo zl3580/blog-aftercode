@@ -1,4 +1,4 @@
-// This file is created by egg-ts-helper@1.25.8
+// This file is created by egg-ts-helper@1.25.7
 // Do not modify this file!!!!!!!!!
 
 import 'egg';
@@ -10,8 +10,10 @@ import ExportTest from '../../../app/service/test';
 import ExportAdminArticle from '../../../app/service/admin/article';
 import ExportAdminPhoto from '../../../app/service/admin/photo';
 import ExportAdminSentence from '../../../app/service/admin/sentence';
+import ExportFrontArticle from '../../../app/service/front/article';
 import ExportFrontHome from '../../../app/service/front/home';
 import ExportFrontMenubar from '../../../app/service/front/menubar';
+import ExportFrontPhoto from '../../../app/service/front/photo';
 import ExportFrontSentence from '../../../app/service/front/sentence';
 
 declare module 'egg' {
@@ -23,8 +25,10 @@ declare module 'egg' {
       sentence: AutoInstanceType<typeof ExportAdminSentence>;
     }
     front: {
+      article: AutoInstanceType<typeof ExportFrontArticle>;
       home: AutoInstanceType<typeof ExportFrontHome>;
       menubar: AutoInstanceType<typeof ExportFrontMenubar>;
+      photo: AutoInstanceType<typeof ExportFrontPhoto>;
       sentence: AutoInstanceType<typeof ExportFrontSentence>;
     }
   }
