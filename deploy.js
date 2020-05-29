@@ -23,10 +23,10 @@ handler.on('error', function(err) {
 });
 
 handler.on('push', function(event) {
-  console.log('Received a push event for %s to %s',
+  console.log('-------- push event for %s to %s',
     event.payload.repository.name,
     event.payload.ref);
-  const syncFile = spawn('C:/Program Files/Git/git-bash.exe', [ './deploy.sh' ]);
+  const syncFile = spawn('sh', [ './deploy.sh' ]);
   syncFile.stdout.on('data', data => {
     console.log('stdout---------', data.toString());
   });

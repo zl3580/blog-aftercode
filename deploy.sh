@@ -6,3 +6,4 @@ git reset --hard origin/master
 git pull 
 npm run tsc
 npm run start
+echo "后端代码部署完成！"
