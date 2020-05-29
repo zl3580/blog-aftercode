@@ -30,7 +30,7 @@ export default (app: Application) => {
 
 
   // 前台
-  // entry页
+  // sentence页
   router.post('/sentence/get', controller.front.entry.get);
   // home 首页
   router.post('/article/get', controller.front.home.getArticle);
