@@ -21,7 +21,7 @@ export default class HomeService extends Service {
     console.log('ArticleService -> getPhoto -> result', result);
     const data = result.map(item => {
       return {
-        img: item.imgs[0],
+        img: [ item.imgs[0], item.imgs[1] ],
         _id: item._id,
       };
     });
