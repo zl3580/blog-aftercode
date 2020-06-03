@@ -2,6 +2,7 @@
 // Do not modify this file!!!!!!!!!
 
 import 'egg';
+import ExportAuthority from '../../../app/controller/authority';
 import ExportHome from '../../../app/controller/home';
 import ExportAdminArticle from '../../../app/controller/admin/article';
 import ExportAdminPhoto from '../../../app/controller/admin/photo';
@@ -14,6 +15,7 @@ import ExportFrontPhoto from '../../../app/controller/front/photo';
 
 declare module 'egg' {
   interface IController {
+    authority: ExportAuthority;
     home: ExportHome;
     admin: {
       article: ExportAdminArticle;
