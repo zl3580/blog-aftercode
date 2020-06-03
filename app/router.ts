@@ -4,6 +4,8 @@ export default (app: Application) => {
   const { controller, router } = app;
 
   router.get('/', controller.home.index);
+  // 鉴权
+  router.post('/authority', controller.authority.authority);
   // 后台
   // 文章
   router.post('/admin/article/add', controller.admin.article.add);
