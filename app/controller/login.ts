@@ -12,14 +12,16 @@ export default class Login extends Controller {
     if (ctx.request.header.host !== '47.99.159.40') {
       console.log('ctx.request.body------------------', ctx.request.body);
       const result = await ctx.service.login.login(ctx.request.body);
+      console.log('Login -> login -> result', result);
       if (result !== null) {
         // 生成 token 的方式
         token = app.jwt.sign({
           username: result.username, // 需要存储的 token 数据
           password: result.password,
         }, app.config.jwt.secret);
+        console.log('token-------', token);
         // token 存入user表中
-        const result1 = await ctx.service.login.token({ ...ctx.request.body, token });
+        const result1 = await ctx.service.login.token({ _id: result._id, token });
         console.log('Login -> login -> result1', result1);
         console.log('token-------------');
         msg = '';

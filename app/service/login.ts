@@ -11,11 +11,12 @@ export default class LoginService extends Service {
     return result;
   }
   async token({ _id, token }) {
-    console.log('-----------------------------token');
+    console.log('LoginService -> token -> _id', _id);
+    console.log('-----------------------------token', token);
     const {
       ctx,
     } = this;
-    const result = await ctx.model.User.updateOne({ _id }, { token });
+    const result = await ctx.model.User.updateOne({ _id }, { $set: { token } });
     return result;
   }
 }
