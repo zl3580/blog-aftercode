@@ -3,7 +3,7 @@
 
 import 'egg';
 import ExportAuthority from '../../../app/controller/authority';
-import ExportHome from '../../../app/controller/home';
+import ExportLogin from '../../../app/controller/login';
 import ExportAdminArticle from '../../../app/controller/admin/article';
 import ExportAdminPhoto from '../../../app/controller/admin/photo';
 import ExportAdminSentence from '../../../app/controller/admin/sentence';
@@ -16,7 +16,7 @@ import ExportFrontPhoto from '../../../app/controller/front/photo';
 declare module 'egg' {
   interface IController {
     authority: ExportAuthority;
-    home: ExportHome;
+    login: ExportLogin;
     admin: {
       article: ExportAdminArticle;
       photo: ExportAdminPhoto;

@@ -2,8 +2,8 @@ import { Application } from 'egg';
 
 export default (app: Application) => {
   const { controller, router } = app;
-
-  router.get('/', controller.home.index);
+  // 登录
+  router.post('/login', controller.login.login);
   // 鉴权
   router.post('/authority', controller.authority.authority);
   // 后台

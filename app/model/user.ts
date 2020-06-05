@@ -1,26 +1,21 @@
 
 
-module.exports = app => {
+export default app => {
   const mongoose = app.mongoose;
   const Schema = mongoose.Schema;
   // 下面得操作是连接数据库
   const ArticleSchema = new Schema({
-    // 修改和新增用到，规定字段得类型和其他条件等
-    title: {
+    username: {
       type: String,
       required: true,
     },
-    content: {
+    password: {
       type: String,
       required: true,
     },
-    img: {
+    token: {
       type: String,
-      required: false,
-    },
-    status: {
-      type: Number,
-      required: false,
+      default: '',
     },
   }, {
     timestamps: {
@@ -30,5 +25,5 @@ module.exports = app => {
   },
   );
 
-  return mongoose.model('Test', ArticleSchema, 'zl-article');
+  return mongoose.model('User', ArticleSchema, 'user');
 };
