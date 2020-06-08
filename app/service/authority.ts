@@ -9,6 +9,7 @@ export default class AuthorityService extends Service {
       ctx,
     } = this;
     const result = await ctx.model.User.findOne({ _id });
+    console.log('获取token');
     return result;
   }
 }
