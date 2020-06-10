@@ -44,7 +44,6 @@ export default class Photo extends Controller {
           success: 'true',
           data,
         };
-        // ctx.set({ 'Content-Type': ' multipart / form - data' });
       }
     }
   }
