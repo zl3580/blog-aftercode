@@ -15,12 +15,6 @@ export default class TagService extends Service {
         data: { message: '标题不能为空！' },
       };
     }
-    if (!params.content) {
-      return {
-        status: '0',
-        data: { message: '内容不能为空！' },
-      };
-    }
     await ctx.model.Tag.create(params);
     return {
       status: '1',
@@ -28,7 +22,7 @@ export default class TagService extends Service {
     };
   }
 
-  // 文章分页
+  // 分页
   async find({ pageSize, pageNum }) {
     const {
       ctx,
@@ -75,7 +69,6 @@ export default class TagService extends Service {
       };
       return data;
     }
-
   }
   // 删除
   async delOne(params) {
@@ -91,5 +84,15 @@ export default class TagService extends Service {
       };
     }
     return res;
+  }
+  // 获取启用的标签
+  async get({ pageSize, pageNum }) {
+    const {
+      ctx,
+    } = this;
+    const count = await ctx.model.Tag.count({});
+    const result = await ctx.model.Tag.find({ status: 1 }).skip(pageSize * (pageNum - 1)).limit(parseInt(pageSize))
+      .sort({ _id: -1 });
+    return { list: result, count };
   }
 }

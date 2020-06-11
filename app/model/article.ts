@@ -27,6 +27,10 @@ export default app => {
       required: false,
       default: 0,
     },
+    tagId: {
+      type: Array,
+      required: true,
+    },
   }, {
     timestamps: {
       createdAt: true,

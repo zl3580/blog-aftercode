@@ -14,6 +14,8 @@ export default (app: Application) => {
   router.post('/admin/article/update', jwt, controller.admin.article.update);
   router.post('/admin/article/status', jwt, controller.admin.article.status);
   router.post('/admin/article/delete', jwt, controller.admin.article.delete);
+  // 获取标签
+  router.post('/admin/tag/get', jwt, controller.admin.tag.get);
   // 标签
   router.post('/admin/tag/add', jwt, controller.admin.tag.add);
   router.post('/admin/tag/find', jwt, controller.admin.tag.find);
@@ -21,6 +23,7 @@ export default (app: Application) => {
   router.post('/admin/tag/update', jwt, controller.admin.tag.update);
   router.post('/admin/tag/status', jwt, controller.admin.tag.status);
   router.post('/admin/tag/delete', jwt, controller.admin.tag.delete);
+
   // 图片
   router.post('/admin/photo/upload', jwt, controller.admin.photo.upload);
   router.post('/admin/photo/add', jwt, controller.admin.photo.add);

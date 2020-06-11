@@ -52,5 +52,14 @@ export default class Tag extends Controller {
     const result = await ctx.service.admin.tag.delOne(ctx.request.body);
     ctx.body = result;
   }
+  // 获取已启用的标签
+  public async get() {
+    const { ctx } = this;
+    const result = await ctx.service.admin.tag.get(ctx.request.body);
+    ctx.body = {
+      status: '1',
+      data: result,
+    };
+  }
 }
 

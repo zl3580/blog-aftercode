@@ -35,8 +35,8 @@ export default class Article extends Controller {
   // 编辑
   public async update() {
     const { ctx } = this;
-    const { _id, title, content } = ctx.request.body;
-    const result = await ctx.service.admin.article.update({ _id }, { title, content });
+    const { _id, title, content, tagId } = ctx.request.body;
+    const result = await ctx.service.admin.article.update({ _id }, { title, content, tagId });
     ctx.body = result;
   }
   // 改变状态

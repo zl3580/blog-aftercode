@@ -14,6 +14,7 @@ export default app => {
       required: false,
       default: 0,
     },
+
   }, {
     timestamps: {
       createdAt: true,
