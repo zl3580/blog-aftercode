@@ -14,7 +14,6 @@ export default class Article extends Controller {
   // 分页
   public async find() {
     const { ctx } = this;
-    console.log('Article -> find --------------------------------> ctx', ctx.state.user);
     const result = await ctx.service.admin.article.find(ctx.request.body);
     ctx.body = {
       status: '1',
@@ -24,11 +23,9 @@ export default class Article extends Controller {
   // 详情
   public async details() {
     const { ctx } = this;
-    console.log('Article -> details ----------------> ctx', ctx.request.body);
     const result = await ctx.service.admin.article.details(ctx.request.body);
     ctx.body = {
       status: '1',
-      success: 'true',
       data: result,
     };
   }
