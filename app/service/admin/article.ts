@@ -12,13 +12,13 @@ export default class ArticleService extends Service {
     if (!params.title) {
       return {
         status: '0',
-        data: { message: '标题不能为空！' },
+        message: '标题不能为空！',
       };
     }
     if (!params.content) {
       return {
         status: '0',
-        data: { message: '内容不能为空！' },
+        message: '内容不能为空！',
       };
     }
     await ctx.model.Article.create(params);

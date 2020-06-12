@@ -25,7 +25,6 @@ export default class Login extends Controller {
       // token 存入user表中
       const result1 = await ctx.service.login.token({ _id: result._id, token });
       console.log('Login -> login -> result1', result1);
-      console.log('token-------------');
       msg = '';
       status = '1';
     } else {
