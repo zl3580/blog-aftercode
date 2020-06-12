@@ -30,6 +30,7 @@ export default app => {
     tagId: {
       type: Array,
       required: true,
+      default: [],
     },
   }, {
     timestamps: {

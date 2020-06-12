@@ -44,6 +44,9 @@ export default class ArticleService extends Service {
       ctx,
     } = this;
     const result = await ctx.model.Article.find({ _id });
+    if (result[0].tagId === null) {
+      result[0].tagId = [];
+    }
     return result[0];
   }
   // 编辑
