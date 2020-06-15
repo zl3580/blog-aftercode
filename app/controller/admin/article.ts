@@ -49,5 +49,13 @@ export default class Article extends Controller {
     const result = await ctx.service.admin.article.delOne(ctx.request.body);
     ctx.body = result;
   }
+  // 点赞
+  public async like() {
+    const { ctx } = this;
+    const { _id } = ctx.request.body;
+    console.log('Article -> like -> _id', _id);
+    const result = await ctx.service.admin.article.like({ _id });
+    ctx.body = result;
+  }
 }
 

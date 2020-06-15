@@ -70,7 +70,6 @@ export default class ArticleService extends Service {
       ctx,
     } = this;
     const result = await ctx.model.Article.update(e, d);
-    console.log('ArticleService -> update -> result', result);
     if (result.ok === 1) {
       const data = {
         status: '1',
@@ -94,5 +93,21 @@ export default class ArticleService extends Service {
       };
     }
     return res;
+  }
+  // 点赞
+  async like(id) {
+    console.log('like -> id', id);
+    const {
+      ctx,
+    } = this;
+    // const result = await ctx.model.Article.update({ _id: '5ee72de0623d0d424427c0d4' }, { $set: { pageview: 1 } });
+    const result = await ctx.model.Article.update({ _id: '5ee72de0623d0d424427c0d4' }, { $inc: { pageview: 1 } });
+    if (result.ok === 1) {
+      const data = {
+        status: '1',
+        data: {},
+      };
+      return data;
+    }
   }
 }

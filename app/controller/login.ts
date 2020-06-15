@@ -19,7 +19,7 @@ export default class Login extends Controller {
         username: result.username, // 需要存储的 token 数据
         password: result.password,
       }, app.config.jwt.secret, {
-        expiresIn: '60m', // 时间
+        expiresIn: '60h', // 时间
       });
       console.log('token-------', token);
       // token 存入user表中
