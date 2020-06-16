@@ -100,9 +100,9 @@ export default class ArticleService extends Service {
     const {
       ctx,
     } = this;
-    // const result = await ctx.model.Article.update({ _id: '5ee72de0623d0d424427c0d4' }, { $set: { pageview: 1 } });
-    const result = await ctx.model.Article.update({ _id: '5ee72de0623d0d424427c0d4' }, { $inc: { pageview: 1 } });
-    if (result.ok === 1) {
+    const result = await ctx.model.Article.where(id).update({ $inc: { pageview: 0.5 } }, function() { console.log('1111'); });
+    console.log('like -> result', result);
+    if (result) {
       const data = {
         status: '1',
         data: {},
