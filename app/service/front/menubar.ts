@@ -15,6 +15,9 @@ export default class MenubarService extends Service {
           { content: { $regex: keyword1 } },
         ],
       });
+      if (result.length === 0) {
+        result[0] = await ctx.model.Article.findById('5eead2c6b877ab2af45019ef');
+      }
     } else {
       result = await ctx.model.Photo.find({
         status: 1,

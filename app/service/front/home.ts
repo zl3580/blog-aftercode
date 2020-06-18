@@ -8,7 +8,8 @@ export default class HomeService extends Service {
     const {
       ctx,
     } = this;
-    const result = await ctx.model.Article.aggregate([{ $sample: { size: 5 } }, { $match: { status: 1 } }]);
+    const result = await ctx.model.Article.aggregate([{ $match: { status: 1 } }, { $sample: { size: 5 } }]);
+    // const result = await ctx.model.Article.aggregate().match({ status: 1 }).sample(5);
     return result;
   }
 
@@ -16,7 +17,7 @@ export default class HomeService extends Service {
     const {
       ctx,
     } = this;
-    const result = await ctx.model.Photo.aggregate([{ $sample: { size: 5 } }, { $match: { status: 1 } }]);
+    const result = await ctx.model.Photo.aggregate([{ $match: { status: 1 } }, { $sample: { size: 5 } }]);
     console.log('ArticleService -> getPhoto -> result', result);
     const data = result.map(item => {
       return {
