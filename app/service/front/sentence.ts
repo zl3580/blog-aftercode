@@ -9,7 +9,7 @@ export default class SentenceService extends Service {
     const {
       ctx,
     } = this;
-    const result = await ctx.model.Sentence.aggregate([{ $sample: { size: 1 } }, { $match: { status: 1 } }]);
+    const result = await ctx.model.Sentence.aggregate([{ $match: { status: 1 } }, { $sample: { size: 1 } }]);
     let data;
     if (result.length === 0) {
       data = {
