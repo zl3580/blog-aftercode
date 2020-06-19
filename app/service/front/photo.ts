@@ -11,5 +11,13 @@ export default class PhotoService extends Service {
       .sort({ _id: -1 });
     return { list: result, count };
   }
+  // id获取详情
+  async details({ _id }) {
+    const {
+      ctx,
+    } = this;
+    const result = await ctx.model.Photo.find({ _id });
+    return result[0];
+  }
 }
 

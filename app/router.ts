@@ -56,5 +56,6 @@ export default (app: Application) => {
   router.post('/article/details', controller.front.article.details);
   // photo 页面
   router.post('/photo/find', controller.front.photo.find);
+  router.post('/photo/details', controller.front.photo.details);
 };
 

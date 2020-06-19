@@ -3,11 +3,18 @@
 export default app => {
   const mongoose = app.mongoose;
   const Schema = mongoose.Schema;
-  const ArticleSchema = new Schema({
-    imgs: {
-      type: Array,
+  const PhotoSchema = new Schema({
+    name: {
+      type: String,
       required: true,
     },
+    url: {
+      type: String,
+      required: true,
+    },
+  });
+  const ArticleSchema = new Schema({
+    imgs: [ PhotoSchema ],
     introduce: {
       type: String,
       required: true,

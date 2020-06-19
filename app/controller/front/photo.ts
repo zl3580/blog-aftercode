@@ -13,6 +13,14 @@ export default class Photo extends Controller {
       data: result,
     };
   }
-
+  // 详情
+  public async details() {
+    const { ctx } = this;
+    const result = await ctx.service.front.photo.details(ctx.request.body);
+    ctx.body = {
+      status: '1',
+      data: result,
+    };
+  }
 }
 
