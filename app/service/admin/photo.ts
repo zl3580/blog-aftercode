@@ -26,10 +26,23 @@ export default class PhotoService extends Service {
   }
   // 新增
   async add(params) {
+    console.log('PhotoService -> add -> params', params);
     const {
       ctx,
     } = this;
-    await ctx.model.Photo.create(params);
+    const result = await ctx.model.Photo.create(params);
+    if (result._id) {
+      const data = params.imgs.map(item => {
+        return {
+          ...item,
+          photoContent: result._id,
+          status: result.status,
+        };
+      });
+      await ctx.model.PhotoList.create(data, function(error) {
+        console.log('PhotoService -> add -> error', error);
+      });
+    }
     return {
       status: '1',
       data: { },
@@ -51,21 +64,42 @@ export default class PhotoService extends Service {
       ctx,
     } = this;
     const result = await ctx.model.Photo.find({ _id });
-    return result[0];
+    const res = await ctx.model.PhotoList.find({ photoContent: _id }, { name: 1, url: 1 });
+    const data = {
+      _id: result[0]._id,
+      address: result[0].address,
+      introduce: result[0].introduce,
+      time: result[0].time,
+      imgs: res,
+    };
+    return data;
   }
   // 编辑
   async update(id, data) {
+    console.log('update -> data', data);
     const {
       ctx,
     } = this;
-    const result = await ctx.model.Photo.update(id, data);
-    if (result.ok === 1) {
-      const data = {
+    const result = await ctx.model.Photo.findOneAndUpdate(id, data);
+    console.log('update -> result', result);
+    if (result._id) {
+      const data1 = data.imgs.map(item => {
+        return {
+          ...item,
+          photoContent: id,
+          status: result.status,
+        };
+      });
+      await ctx.model.PhotoList.deleteMany({ photoContent: id });
+      await ctx.model.PhotoList.create(data1, function(error) {
+        console.log('PhotoService -> add -> error', error);
+      });
+      return {
         status: '1',
         data: {},
       };
-      return data;
     }
+
   }
   // 改变状态
   async status(id, data) {
@@ -74,12 +108,16 @@ export default class PhotoService extends Service {
     } = this;
     const result = await ctx.model.Photo.update(id, data);
     if (result.ok === 1) {
-      const data = {
-        status: '1',
-        data: {},
-      };
-      return data;
+      const res = await ctx.model.PhotoList.updateMany({ photoContent: id }, data);
+      if (res.ok === 1) {
+        const data = {
+          status: '1',
+          data: {},
+        };
+        return data;
+      }
     }
+
   }
   // 删除
   async delOne(params) {

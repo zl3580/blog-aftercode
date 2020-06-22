@@ -1,14 +1,14 @@
 
 import { Service } from 'egg';
 export default class PhotoService extends Service {
-  // 分页
-  async find({ pageSize, pageNum }) {
+  // 获取所有photo
+  async find() {
     const {
       ctx,
     } = this;
-    const count = await (await ctx.model.Photo.find()).length;
-    const result = await ctx.model.Photo.find({ status: 1 }).skip(pageSize * (pageNum - 1)).limit(parseInt(pageSize))
-      .sort({ _id: -1 });
+    const count = await (await ctx.model.PhotoList.find()).length;
+    const result = await ctx.model.PhotoList.find({ status: 1 })
+      .populate('photoContent', 'address introduce');
     return { list: result, count };
   }
   // id获取详情
@@ -16,7 +16,7 @@ export default class PhotoService extends Service {
     const {
       ctx,
     } = this;
-    const result = await ctx.model.Photo.find({ _id });
+    const result = await ctx.model.PhotoList.find({ _id });
     return result[0];
   }
 }

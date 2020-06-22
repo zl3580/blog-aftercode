@@ -4,6 +4,7 @@
 import 'egg';
 import ExportArticle from '../../../app/model/article';
 import ExportPhoto from '../../../app/model/photo';
+import ExportPhotoList from '../../../app/model/photoList';
 import ExportSentence from '../../../app/model/sentence';
 import ExportTag from '../../../app/model/tag';
 import ExportUser from '../../../app/model/user';
@@ -12,6 +13,7 @@ declare module 'egg' {
   interface IModel {
     Article: ReturnType<typeof ExportArticle>;
     Photo: ReturnType<typeof ExportPhoto>;
+    PhotoList: ReturnType<typeof ExportPhotoList>;
     Sentence: ReturnType<typeof ExportSentence>;
     Tag: ReturnType<typeof ExportTag>;
     User: ReturnType<typeof ExportUser>;
