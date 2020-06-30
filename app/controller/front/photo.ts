@@ -7,7 +7,7 @@ export default class Photo extends Controller {
   // 照片列表
   public async find() {
     const { ctx } = this;
-    const result = await ctx.service.front.photo.find(ctx.request.body);
+    const result = await ctx.service.front.photo.find();
     ctx.body = {
       status: '1',
       data: result,

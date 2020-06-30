@@ -77,8 +77,8 @@ export default class Photo extends Controller {
   // 编辑
   public async update() {
     const { ctx } = this;
-    const { _id, address, time, introduce, imgs } = ctx.request.body;
-    const result = await ctx.service.admin.photo.update({ _id }, { address, time, introduce, imgs });
+    const { _id, city, address, time, introduce, imgs } = ctx.request.body;
+    const result = await ctx.service.admin.photo.update({ _id }, { city, address, time, introduce, imgs });
     ctx.body = result;
   }
   // 改变状态

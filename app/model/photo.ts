@@ -16,6 +16,10 @@ export default app => {
       type: String,
       required: true,
     },
+    city: {
+      type: String,
+      required: true,
+    },
     status: {
       type: Number,
       required: false,

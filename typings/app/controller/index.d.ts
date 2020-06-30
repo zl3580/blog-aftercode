@@ -13,6 +13,7 @@ import ExportFrontEntry from '../../../app/controller/front/entry';
 import ExportFrontHome from '../../../app/controller/front/home';
 import ExportFrontMenubar from '../../../app/controller/front/menubar';
 import ExportFrontPhoto from '../../../app/controller/front/photo';
+import ExportFrontTag from '../../../app/controller/front/tag';
 
 declare module 'egg' {
   interface IController {
@@ -30,6 +31,7 @@ declare module 'egg' {
       home: ExportFrontHome;
       menubar: ExportFrontMenubar;
       photo: ExportFrontPhoto;
+      tag: ExportFrontTag;
     }
   }
 }

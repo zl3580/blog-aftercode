@@ -17,6 +17,7 @@ import ExportFrontHome from '../../../app/service/front/home';
 import ExportFrontMenubar from '../../../app/service/front/menubar';
 import ExportFrontPhoto from '../../../app/service/front/photo';
 import ExportFrontSentence from '../../../app/service/front/sentence';
+import ExportFrontTag from '../../../app/service/front/tag';
 
 declare module 'egg' {
   interface IService {
@@ -34,6 +35,7 @@ declare module 'egg' {
       menubar: AutoInstanceType<typeof ExportFrontMenubar>;
       photo: AutoInstanceType<typeof ExportFrontPhoto>;
       sentence: AutoInstanceType<typeof ExportFrontSentence>;
+      tag: AutoInstanceType<typeof ExportFrontTag>;
     }
   }
 }

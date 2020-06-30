@@ -67,6 +67,7 @@ export default class PhotoService extends Service {
     const res = await ctx.model.PhotoList.find({ photoContent: _id }, { name: 1, url: 1 });
     const data = {
       _id: result[0]._id,
+      city: result[0].city,
       address: result[0].address,
       introduce: result[0].introduce,
       time: result[0].time,

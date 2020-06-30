@@ -57,5 +57,7 @@ export default (app: Application) => {
   // photo 页面
   router.post('/photo/find', controller.front.photo.find);
   router.post('/photo/details', controller.front.photo.details);
+  // 获取标签
+  router.post('/tag/get', controller.front.tag.get);
 };
 
