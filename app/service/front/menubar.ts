@@ -2,6 +2,7 @@ import { Service } from 'egg';
 export default class MenubarService extends Service {
   // 搜索
   async search({ type, keyword }) {
+
     const {
       ctx,
     } = this;
@@ -23,6 +24,7 @@ export default class MenubarService extends Service {
         status: 1,
         $or: [ // 多条件，数组
           { address: { $regex: keyword1 } },
+          { city: { $regex: keyword1 } },
           { introduce: { $regex: keyword1 } },
         ],
       });

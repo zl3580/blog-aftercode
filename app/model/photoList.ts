@@ -12,6 +12,10 @@ export default app => {
       type: String,
       required: true,
     },
+    size: {
+      type: Array,
+      required: true,
+    },
     photoContent: {
       type: mongoose.ObjectId,
       ref: 'Photo',

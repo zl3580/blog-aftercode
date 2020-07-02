@@ -10,6 +10,7 @@ export default class Photo extends Controller {
   public async upload() {
     const { ctx } = this;
     const parts = ctx.multipart();
+    console.log('Photo -> upload -> parts', parts);
     let files = {};
     const data: any = [];
     let part;
@@ -22,6 +23,7 @@ export default class Photo extends Controller {
           return;
         }
         // part 是上传的文件流
+        console.log('part---------------', part);
         const fieldname = part.filename;
         // 上传图片的目录
         const dir = await ctx.service.admin.photo.getUploadFile(fieldname);
@@ -41,7 +43,6 @@ export default class Photo extends Controller {
         data.push({ name: fieldname, url: dir.saveDir });
         ctx.body = {
           status: '1',
-          success: 'true',
           data,
         };
       }

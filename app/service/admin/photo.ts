@@ -12,6 +12,7 @@ export default class PhotoService extends Service {
    * @param filename 文件名
    */
   async getUploadFile(filename) {
+    console.log('-----------hxkhkhfkshk');
     // 2.创建图片保存的路径
     const dir = path.join(this.config.uploadDir);
     await mkdirp(dir); // 不存在就创建目录

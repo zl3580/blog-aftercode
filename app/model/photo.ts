@@ -20,6 +20,9 @@ export default app => {
       type: String,
       required: true,
     },
+    imgs: {
+      type: Array,
+    },
     status: {
       type: Number,
       required: false,
