@@ -6,6 +6,7 @@ import ExportAuthority from '../../../app/controller/authority';
 import ExportLogin from '../../../app/controller/login';
 import ExportAdminArticle from '../../../app/controller/admin/article';
 import ExportAdminPhoto from '../../../app/controller/admin/photo';
+import ExportAdminQiniuUpload from '../../../app/controller/admin/qiniuUpload';
 import ExportAdminSentence from '../../../app/controller/admin/sentence';
 import ExportAdminTag from '../../../app/controller/admin/tag';
 import ExportFrontArticle from '../../../app/controller/front/article';
@@ -22,6 +23,7 @@ declare module 'egg' {
     admin: {
       article: ExportAdminArticle;
       photo: ExportAdminPhoto;
+      qiniuUpload: ExportAdminQiniuUpload;
       sentence: ExportAdminSentence;
       tag: ExportAdminTag;
     }

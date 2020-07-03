@@ -41,6 +41,8 @@ export default (app: Application) => {
   router.post('/admin/sentence/update', jwt, controller.admin.sentence.update);
   router.post('/admin/sentence/status', jwt, controller.admin.sentence.status);
   router.post('/admin/sentence/delete', jwt, controller.admin.sentence.delete);
+  // 上传七牛
+  router.post('/admin/upload/getUploadKey', jwt, controller.admin.qiniuUpload.getUploadKey);
 
 
   // 前台

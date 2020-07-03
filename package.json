@@ -30,6 +30,7 @@
     "egg-view-nunjucks": "^2.2.0",
     "github-webhook-handler": "^1.0.0",
     "pump": "^3.0.0",
+    "qiniu": "^7.3.2",
     "silly-datetime": "^0.1.2"
   },
   "devDependencies": {
