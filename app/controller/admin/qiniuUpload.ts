@@ -11,6 +11,7 @@ export default class Photo extends Controller {
     const options = {
       scope: 'zl-images',
       expires: 7200,
+      returnBody: '{"key":"$(key)","hash":"$(etag)","name":"$(fname)"}',
     };
     const putPolicy = new qiniu.rs.PutPolicy(options);
     const uploadToken = putPolicy.uploadToken(mac);
