@@ -29,6 +29,16 @@ export default class MenubarService extends Service {
         ],
       });
     }
-    return result;
+    const data: any = [];
+    result.forEach(item => {
+      const res = ctx.model.PhotoList.find({ photoContent: item._id }).populate('photoContent', 'address introduce city');
+      data.push(res);
+    });
+    const temp = await Promise.all(data);
+    if (temp.length > 0) {
+      const data = temp.reduce((a, b) => { return Array.isArray(a) ? a.concat(b) : []; });
+      return data;
+    }
+    return [];
   }
 }
