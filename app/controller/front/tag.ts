@@ -12,5 +12,6 @@ export default class Tag extends Controller {
       data: result,
     };
   }
+
 }
 

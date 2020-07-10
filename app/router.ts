@@ -51,11 +51,14 @@ export default (app: Application) => {
   // home 首页
   router.post('/article/get', controller.front.home.getArticle);
   router.post('/photo/get', controller.front.home.getPhoto);
+
   // Menubar  搜索
   router.post('/menubar/search', controller.front.menubar.search);
+
   // article  页面
   router.post('/article/find', controller.front.article.find);
   router.post('/article/details', controller.front.article.details);
+  router.post('/article/getArticleByTag', controller.front.article.getArticleByTag);
   // photo 页面
   router.post('/photo/find', controller.front.photo.find);
   router.post('/photo/details', controller.front.photo.details);

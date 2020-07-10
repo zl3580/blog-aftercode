@@ -53,7 +53,7 @@ export default class Article extends Controller {
   public async like() {
     const { ctx } = this;
     const { _id } = ctx.request.body;
-    console.log('Article -> like -> _id', _id);
+    console.log('Article -> like ----------> ctx.request', ctx.request.ip);
     const result = await ctx.service.admin.article.like({ _id });
     ctx.body = result;
   }

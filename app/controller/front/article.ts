@@ -21,5 +21,16 @@ export default class Article extends Controller {
       data: result,
     };
   }
+  // 通过标签获取文章
+  public async getArticleByTag() {
+    const { ctx } = this;
+    const { _id } = ctx.request.body;
+    console.log('Article -> getArticleByTag -> _id', _id);
+    const result = await ctx.service.front.article.getArticleByTag(_id);
+    ctx.body = {
+      status: '1',
+      data: result,
+    };
+  }
 }
 

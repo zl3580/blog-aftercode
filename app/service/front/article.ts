@@ -22,4 +22,16 @@ export default class ArticleService extends Service {
     const result = await ctx.model.Article.find({ _id });
     return result[0];
   }
+  // 通过标签获取tag
+  async getArticleByTag(_id) {
+    console.log('getArticleByTag -> _id', _id);
+    const {
+      ctx,
+    } = this;
+    const result = await ctx.model.Article.find({ tagId: _id }).sort({ _id: -1 });
+    if (result.length === 0) {
+      result[0] = await ctx.model.Article.findById('5eead2c6b877ab2af45019ef');
+    }
+    return { list: result };
+  }
 }

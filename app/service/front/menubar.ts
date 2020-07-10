@@ -15,7 +15,7 @@ export default class MenubarService extends Service {
           { title: { $regex: keyword1 } },
           { content: { $regex: keyword1 } },
         ],
-      });
+      }).sort({ _id: -1 });
       if (result.length === 0) {
         result[0] = await ctx.model.Article.findById('5eead2c6b877ab2af45019ef');
       }
@@ -28,17 +28,18 @@ export default class MenubarService extends Service {
           { introduce: { $regex: keyword1 } },
         ],
       });
+      const data: any = [];
+      result.forEach(item => {
+        const res = ctx.model.PhotoList.find({ photoContent: item._id }).populate('photoContent', 'address introduce city');
+        data.push(res);
+      });
+      const temp = await Promise.all(data);
+      if (temp.length > 0) {
+        result = temp.reduce((a, b) => { return Array.isArray(a) ? a.concat(b) : []; });
+      } else {
+        result = [];
+      }
     }
-    const data: any = [];
-    result.forEach(item => {
-      const res = ctx.model.PhotoList.find({ photoContent: item._id }).populate('photoContent', 'address introduce city');
-      data.push(res);
-    });
-    const temp = await Promise.all(data);
-    if (temp.length > 0) {
-      const data = temp.reduce((a, b) => { return Array.isArray(a) ? a.concat(b) : []; });
-      return data;
-    }
-    return [];
+    return result;
   }
 }

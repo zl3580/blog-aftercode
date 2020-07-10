@@ -40,7 +40,6 @@ export default class SentenceService extends Service {
       ctx,
     } = this;
     const result = await ctx.model.Sentence.update(e, d);
-    console.log('ArticleService -> update -> result', result);
     if (result.ok === 1) {
       const data = {
         status: '1',

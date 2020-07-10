@@ -12,4 +12,5 @@ export default class TagService extends Service {
     const result = await ctx.model.Tag.find();
     return { list: result };
   }
+
 }
