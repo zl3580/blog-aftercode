@@ -96,12 +96,10 @@ export default class ArticleService extends Service {
   }
   // 点赞
   async like(id) {
-    console.log('like -> id', id);
     const {
       ctx,
     } = this;
-    const result = await ctx.model.Article.where(id).update({ $inc: { pageview: 0.5 } }, function() { console.log('1111'); });
-    console.log('like -> result', result);
+    const result = await ctx.model.Article.where(id).update({ $inc: { pageview: 0.5 } }, function() { console.log('==1111'); });
     if (result) {
       const data = {
         status: '1',
@@ -109,5 +107,6 @@ export default class ArticleService extends Service {
       };
       return data;
     }
+
   }
 }
