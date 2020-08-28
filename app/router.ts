@@ -64,5 +64,7 @@ export default (app: Application) => {
   router.post('/api/photo/details', controller.front.photo.details);
   // 获取标签
   router.post('/api/tag/get', controller.front.tag.get);
+  // 监控台
+  router.post('/api/monitor/get', controller.front.monitor.get);
 };
 
