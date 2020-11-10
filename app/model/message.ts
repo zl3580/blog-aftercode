@@ -9,10 +9,22 @@ export default app => {
       type: String,
       required: true,
     },
+    name: {
+      type: String,
+      required: false,
+    },
+    ip: {
+      type: String,
+      required: true,
+    },
+    avatar: {
+      type: String,
+      required: false,
+    },
     status: {
       type: Number,
       required: false,
-      default: 0,
+      default: 1,
     },
     pageview: {
       type: Number,
