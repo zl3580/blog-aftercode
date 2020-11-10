@@ -15,6 +15,7 @@ import ExportAdminTag from '../../../app/service/admin/tag';
 import ExportFrontArticle from '../../../app/service/front/article';
 import ExportFrontHome from '../../../app/service/front/home';
 import ExportFrontMenubar from '../../../app/service/front/menubar';
+import ExportFrontMessage from '../../../app/service/front/message';
 import ExportFrontMonitor from '../../../app/service/front/monitor';
 import ExportFrontPhoto from '../../../app/service/front/photo';
 import ExportFrontSentence from '../../../app/service/front/sentence';
@@ -34,6 +35,7 @@ declare module 'egg' {
       article: AutoInstanceType<typeof ExportFrontArticle>;
       home: AutoInstanceType<typeof ExportFrontHome>;
       menubar: AutoInstanceType<typeof ExportFrontMenubar>;
+      message: AutoInstanceType<typeof ExportFrontMessage>;
       monitor: AutoInstanceType<typeof ExportFrontMonitor>;
       photo: AutoInstanceType<typeof ExportFrontPhoto>;
       sentence: AutoInstanceType<typeof ExportFrontSentence>;

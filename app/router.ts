@@ -66,5 +66,8 @@ export default (app: Application) => {
   router.post('/api/tag/get', controller.front.tag.get);
   // 监控台
   router.post('/api/monitor/get', controller.front.monitor.get);
+  // 留言板
+  router.post('/api/message/get', controller.front.message.get);
+  router.post('/api/message/add', controller.front.message.add);
 };
 

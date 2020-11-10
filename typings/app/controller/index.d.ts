@@ -13,6 +13,7 @@ import ExportFrontArticle from '../../../app/controller/front/article';
 import ExportFrontEntry from '../../../app/controller/front/entry';
 import ExportFrontHome from '../../../app/controller/front/home';
 import ExportFrontMenubar from '../../../app/controller/front/menubar';
+import ExportFrontMessage from '../../../app/controller/front/message';
 import ExportFrontMonitor from '../../../app/controller/front/monitor';
 import ExportFrontPhoto from '../../../app/controller/front/photo';
 import ExportFrontTag from '../../../app/controller/front/tag';
@@ -33,6 +34,7 @@ declare module 'egg' {
       entry: ExportFrontEntry;
       home: ExportFrontHome;
       menubar: ExportFrontMenubar;
+      message: ExportFrontMessage;
       monitor: ExportFrontMonitor;
       photo: ExportFrontPhoto;
       tag: ExportFrontTag;
