@@ -26,11 +26,6 @@ export default app => {
       required: false,
       default: 1,
     },
-    pageview: {
-      type: Number,
-      required: false,
-      default: 0,
-    },
   }, {
     timestamps: {
       createdAt: true,

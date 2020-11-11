@@ -58,7 +58,6 @@ export default class Message extends Controller {
             throw respErr;
           }
           if (respInfo.statusCode === 200) {
-            console.log('----------------------------', respBody);
             resove(respBody?.key);
 
           } else {
@@ -70,13 +69,29 @@ export default class Message extends Controller {
       });
 
     }
+
+
     const result1 = await upload('./icon.png', new Date().getMilliseconds());
-    const data = {
-      ip: ctx.ip,
-      name: nameData.splice(Math.floor(Math.random() * 10) + 1, 3).join(''),
-      avatar: ' https://cnd.lxzyl.cn/' + result1,
-      ...ctx.request.body,
-    };
+    const addressData = await ctx.curl(`https://apis.map.qq.com/ws/location/v1/ip?ip=${ctx.ip}&key=MG2BZ-5SLKU-MSTVW-2UGSZ-BXJTJ-Y2F6U`);
+    const temp = JSON.parse(addressData.data.toString('utf8'));
+    let data;
+    if (temp.status === 0) {
+      let { nation, province, city } = temp.result.ad_info;
+      if (province === city) {
+        city = '';
+      }
+      data = {
+        ip: `${nation} ${province} ${city}`,
+        avatar: ' https://cnd.lxzyl.cn/' + result1,
+        ...ctx.request.body,
+      };
+    } else {
+      data = {
+        ip: '神秘组织',
+        avatar: ' https://cnd.lxzyl.cn/' + result1,
+        ...ctx.request.body,
+      };
+    }
 
     const result = await ctx.service.front.message.add(data);
     ctx.body = {

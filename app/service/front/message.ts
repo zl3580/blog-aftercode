@@ -24,6 +24,7 @@ export default class Message extends Service {
         content: item.content,
         avatar: item.avatar,
         createdAt: renderTime(item.createdAt),
+        _id: item._id,
       };
     });
     return { list: data, count };
