@@ -1,7 +1,7 @@
 import { Application } from 'egg';
 
 export default (app: Application) => {
-  const { controller, router, jwt } = app;
+  const { controller, router, jwt, io } = app;
   // 登录
   router.post('/api/login', controller.login.login);
   // 鉴权
@@ -69,5 +69,8 @@ export default (app: Application) => {
   // 留言板
   router.post('/api/message/get', controller.front.message.get);
   router.post('/api/message/add', controller.front.message.add);
+
+  // 留言板   io
+  io.of('/').route('message', io.controller.messagedd.add);
 };
 

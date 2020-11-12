@@ -18,6 +18,7 @@ import 'egg-view-nunjucks';
 import 'egg-mongoose';
 import 'egg-cors';
 import 'egg-jwt';
+import 'egg-socket.io';
 import { EggPluginItem } from 'egg';
 declare module 'egg' {
   interface EggPlugin {
@@ -37,5 +38,6 @@ declare module 'egg' {
     mongoose?: EggPluginItem;
     cors?: EggPluginItem;
     jwt?: EggPluginItem;
+    io?: EggPluginItem;
   }
 }

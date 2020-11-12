@@ -1,6 +1,4 @@
 
-
-// 解析用户的输入，处理后返回相应的结果
 import { Controller } from 'egg';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const jdenticon = require('jdenticon');
@@ -13,19 +11,12 @@ const nameData = [ '我', '你', '他', '红', '黄', 'by', 'tt', 'ii', 'kk', 'q
   '系', 'tian', 'jkk', 'df', '嘻嘻', '好啊', '嗯', '━((*′д｀)', '爻(′д｀*))━!!!!',
   '苦笑', '呲牙', '强颜欢笑', 'yy', '23', '78', '9', 'o', 'r', 'p' ];
 
+
 export default class Message extends Controller {
   // 信息列表
-  public async get() {
-    const { ctx } = this;
-    const result = await ctx.service.front.message.find(ctx.request.body);
-    ctx.body = {
-      status: '1',
-      data: result,
-    };
-  }
-  // 提交留言    废弃
   public async add() {
     const { ctx } = this;
+    const message = ctx.args[0];
 
     const size = 32;
     const value = nameData.splice(Math.floor(Math.random() * 10) + 1, 1).join('');
@@ -80,22 +71,22 @@ export default class Message extends Controller {
       data = {
         ip: `${nation} ${province} ${city}`,
         avatar: ' https://cnd.lxzyl.cn/' + result1,
-        ...ctx.request.body,
+        ...message,
       };
     } else {
       data = {
         ip: '神秘组织',
         avatar: ' https://cnd.lxzyl.cn/' + result1,
-        ...ctx.request.body,
+        ...message,
       };
     }
 
-    const result = await ctx.service.front.message.add(data);
+    await ctx.service.front.message.add(data);
+    const result = await ctx.service.front.message.find({ pageNum: 1, pageSize: 10 });
     ctx.body = {
       status: '1',
       data: result,
     };
-
+    await ctx.socket.emit('res', result);
   }
 }
-
