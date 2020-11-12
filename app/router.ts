@@ -71,6 +71,6 @@ export default (app: Application) => {
   router.post('/api/message/add', controller.front.message.add);
 
   // 留言板   io
-  io.of('/socket').route('message', io.controller.messagedd.add);
+  io.of('/').route('message', io.controller.messagedd.add);
 };
 
