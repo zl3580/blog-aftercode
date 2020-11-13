@@ -13,7 +13,7 @@ const nameData = [ '我', '你', '他', '红', '黄', 'by', 'tt', 'ii', 'kk', 'q
 
 
 export default class Message extends Controller {
-  // 信息列表
+  // 新增留言
   public async add() {
     const { ctx } = this;
     const message = ctx.args[0];
@@ -83,10 +83,17 @@ export default class Message extends Controller {
 
     await ctx.service.front.message.add(data);
     const result = await ctx.service.front.message.find({ pageNum: 1, pageSize: 10 });
-    ctx.body = {
-      status: '1',
-      data: result,
-    };
-    await ctx.socket.emit('res', result);
+    await ctx.app.io.of('/').emit('res', result);
+  }
+
+  // 提交回复
+  public async addBack() {
+    const { ctx } = this;
+    const { id: _id, backMessage } = ctx.args[0];
+    await ctx.service.front.message.addBack({ _id }, { message: backMessage });
+    const result = await ctx.service.front.message.find({ pageNum: 1, pageSize: 10 });
+    console.log('-----------Message -> addBack -> result', result);
+    await ctx.app.io.of('/').emit('res', result);
+
   }
 }

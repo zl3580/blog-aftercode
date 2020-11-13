@@ -21,6 +21,10 @@ export default app => {
       type: String,
       required: false,
     },
+    backInfo: {
+      type: Array,
+      required: false,
+    },
     status: {
       type: Number,
       required: false,

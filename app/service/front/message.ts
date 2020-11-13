@@ -25,10 +25,32 @@ export default class Message extends Service {
         avatar: item.avatar,
         createdAt: renderTime(item.createdAt),
         _id: item._id,
+        backInfo: item.backInfo,
       };
     });
     return { list: data, count };
   }
+
+  // 提交留言回复
+  async addBack(_id, data) {
+    const {
+      ctx,
+    } = this;
+    const result = await ctx.model.Message.find(_id);
+    result[0].backInfo.push(data);
+    const message = result[0].backInfo;
+    const res = await ctx.model.Message.update(_id, { backInfo: message });
+    if (res.ok === 1) {
+      const data = {
+        status: '1',
+        data: {},
+      };
+      return data;
+    }
+
+  }
+
+
   // 提交留言
   async add(params) {
     const {

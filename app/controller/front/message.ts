@@ -23,6 +23,19 @@ export default class Message extends Controller {
       data: result,
     };
   }
+
+  // 提交回复
+  public async addBack() {
+    const { ctx } = this;
+    const { id: _id, backMessage } = ctx.request.body;
+    const result = await ctx.service.front.message.addBack({ _id }, { message: backMessage });
+    ctx.body = {
+      status: '1',
+      data: result,
+    };
+  }
+
+
   // 提交留言    废弃
   public async add() {
     const { ctx } = this;
