@@ -25,6 +25,11 @@ export default app => {
       required: false,
       default: 0,
     },
+  }, {
+    timestamps: {
+      createdAt: true,
+      updatedAt: true,
+    },
   });
 
   return mongoose.model('PhotoList', PhotoListSchema, 'photoList');

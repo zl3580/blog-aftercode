@@ -83,6 +83,7 @@ export default class Message extends Controller {
 
     await ctx.service.front.message.add(data);
     const result = await ctx.service.front.message.find({ pageNum: 1, pageSize: 10 });
+    console.log('------------------------------', 11111111111111111111111);
     await ctx.app.io.of('/').emit('res', result);
   }
 
@@ -92,8 +93,6 @@ export default class Message extends Controller {
     const { id: _id, backMessage } = ctx.args[0];
     await ctx.service.front.message.addBack({ _id }, { message: backMessage });
     const result = await ctx.service.front.message.find({ pageNum: 1, pageSize: 10 });
-    console.log('-----------Message -> addBack -> result', result);
     await ctx.app.io.of('/').emit('res', result);
-
   }
 }
