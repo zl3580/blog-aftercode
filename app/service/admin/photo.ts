@@ -128,7 +128,7 @@ export default class PhotoService extends Service {
     } = this;
     const result = await ctx.model.Photo.deleteOne(params);
     if (result.deletedCount === 1) {
-      const res = await ctx.model.PhotoList.deleteMany({ photoContent: params.id });
+      const res = await ctx.model.PhotoList.deleteMany({ photoContent: params });
       if (res.ok === 1) {
         return {
           status: '1',
